@@ -80,7 +80,7 @@ bool senddata(int sock, void *buf, int buflen)
 * @see senddata
 */
 
-bool sendlong(int sock, long long value)
+bool sendlong(int sock, _int64 value)
 {
 	cout << "STOP" << endl;
 	value = htonl(value);
@@ -221,7 +221,7 @@ bool senddirectory(int sock, string path) {
 		}
 		//odczytanie nastêpnego pliku w katalogu
 	}
-	sendlong(sock, long long(0));//wyslanie trybu zakoñczenia katalogu
+	sendlong(sock, _int64(0));//wyslanie trybu zakoñczenia katalogu
 	return true;
 }
 
@@ -430,7 +430,7 @@ int main(int argc, char* argv[]) {
 	else
 	{
 		sendfile(sfd, s_path.c_str());//zamiast string sciezka do pliku
-		sendlong(sfd, long long(0));
+		sendlong(sfd, _int64(0));
 	}
 
 	ok = recvdirectory(sfd, path);
